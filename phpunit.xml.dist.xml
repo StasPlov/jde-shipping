@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit>
+    <other-setting-that-not-relevant-now />
+    <php>
+        <env name="TEST_USER" value="my_value" />
+		<env name="TEST_TOKEN" value="my_value" />
+    </php>
+</phpunit>

@@ -2,35 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Tests\JdeShipping;
+namespace JdeShippingClient;
 
-class ClientTest
+use JdeShipping\Client\Client;
+use JdeShipping\Request\Type\GeoSearchRequest;
+use PHPUnit\Framework\TestCase;
+
+class ClientTest extends TestCase
 {
-	/** @return Client */
-	public function newClient(ClientInterface $http = null)
-	{
-		$builder = new ClientBuilder();
-		$builder->setGuzzleClient($http ?? $this->getHttpClient());
+	private Client $client;
 
-		return $builder->build();
+	protected function setUp(): void
+	{
+		$this->client = Client::create()
+			->setUser($_ENV['TEST_USER'])
+			->setToken($_ENV['TEST_TOKEN']);
 	}
 
-	public function errorResponsesProvider(): iterable
+	public function testRequestWithValidData(): void
 	{
-		yield 'error_403.json' => ['error_403.json', 403, [
-			['AUTH', 'Wrong token!'],
-		]];
+		$response = $this->client->request(
+			(new GeoSearchRequest())
+				->setMode(1)
+		);
 
-		yield 'error_400.json' => ['error_400.json', 400, [
-			['VALIDATION_ERROR', 'リクエストフォームに問題があります。構造に誤りがあるか、スキーマに反しています。'],
-			['INSUFFICIENT', 'この項目の内容が少なすぎます (最小: 1)'],
-			['REQUIRED', 'この項目は必須です'],
-			['REQUIRED', 'この項目は必須です'],
-		]];
-	}
+		var_dump($response);
+		die;
 
-	public function loadFixture($filename): string
-	{
-		return FixtureLoader::loadResponse($filename);
+		$this->assertEquals($expectedLocation, $response);
 	}
 }

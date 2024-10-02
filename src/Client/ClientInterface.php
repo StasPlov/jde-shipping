@@ -2,15 +2,36 @@
 
 declare(strict_types=1);
 
-namespace JdeShipping\Client\Client;
+namespace JdeShipping\Client;
+
+use JdeShipping\Exception\ClientException;
+use JdeShipping\Request\Request;
 
 interface ClientInterface
 {
-	public function setBaseUrl(string $baseUrl): self;
+	/**
+	 * @param string $token
+	 * @return self
+	 */
+	public function setUser(string $token): self;
 
+	/**
+	 * @param string $token
+	 * @return self
+	 */
 	public function setToken(string $token): self;
 
-	public function get(string $endpoint, array $params = []);
+	/**
+	 * @param string $token
+	 * @return self
+	 */
+	public function setBaseUrl(string $baseUrl): self;
 
-	public function post(string $endpoint, array $data = []);
+	/**
+	 * @param Request $request
+	 * @return object|array<object>
+	 * 
+	 * @throws ClientException
+	 */
+	public function request(Request $request);
 }

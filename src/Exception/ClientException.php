@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JdeShipping\Exception\ClientException;
+namespace JdeShipping\Exception;
 
 use Exception;
 

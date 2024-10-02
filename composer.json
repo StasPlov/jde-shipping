@@ -3,7 +3,7 @@
 	"version": "v1.0.0",
 	"type": "library",
 	"license": "MIT",
-	"description": "Adds validator for middleware request support in your Symfony application",
+	"description": "Library for interaction with the ZheldorExpedition API",
 	"keywords": [
 		"Shipping",
 		"php",
