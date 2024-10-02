@@ -9,7 +9,6 @@ use JdeShipping\Exception\ClientException;
 use JdeShipping\Exception\RemoteServerException;
 use JdeShipping\Request\Request;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
-use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpClient\HttpClient;
