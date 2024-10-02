@@ -3,7 +3,7 @@
 Features:
 
 - [ ] Cost Calculation
-  - [ ] Delivery cost calculation by addresses
+  - [x] Delivery cost calculation by addresses
   - [ ] Delivery cost calculation
   - [ ] SMART delivery cost calculation (by city names)
 - [ ] Requests

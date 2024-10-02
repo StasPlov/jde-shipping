@@ -6,6 +6,7 @@ namespace JdeShipping\Client;
 
 use Exception;
 use JdeShipping\Exception\ClientException;
+use JdeShipping\Exception\RemoteServerException;
 use JdeShipping\Request\Request;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
 use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
@@ -149,12 +150,12 @@ class Client implements ClientInterface
 			$data
 		);
 
-		if (is_array($result)) {
+		if (self::isJsonArray($result)) {
 			$deserializeType = "array<$deserializeType>";
 		}
 
 		$resultObj = $this->deserialize(
-			json_encode($result),
+			$result,
 			$deserializeType
 		);
 
@@ -168,9 +169,9 @@ class Client implements ClientInterface
 	 * @param string $method
 	 * @param array $data
 	 * 
-	 * @return array
+	 * @return string json
 	 */
-	private function send(string $url, string $method = self::METHOD_POST, array $data = []): array
+	private function send(string $url, string $method = self::METHOD_POST, array $data = []): string
 	{
 		try {
 			$sendType = ($method === self::METHOD_POST) ? 'json' : 'query';
@@ -181,7 +182,7 @@ class Client implements ClientInterface
 			];
 
 			$response = $this->httpClient->request($method, $url, $options);
-			$result = $response->toArray();
+			$result = $response->getContent();
 		} catch (Exception $e) {
 			throw new ClientException($e->getMessage(), $e->getCode());
 		} finally {
@@ -266,5 +267,31 @@ class Client implements ClientInterface
 	private function deserialize(string $data, string $type)
 	{
 		return $this->serializer->deserialize($data, $type, 'json');
+	}
+
+	/**
+	 * Check is json array string or json simple object string function
+	 *
+	 * @param string $jsonString
+	 * @return bool
+	 * @throws RemoteServerException
+	 */
+	private static function isJsonArray(string $jsonString): bool
+	{
+		$decoded = json_decode($jsonString, true);
+
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			throw new RemoteServerException("Invalid JSON string", 500);
+		}
+
+		if (is_array($decoded)) {
+			if (array_keys($decoded) !== range(0, count($decoded) - 1)) {
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			throw new RemoteServerException("Invalid JSON string", 500);
+		}
 	}
 }

@@ -9,6 +9,7 @@ use JdeShipping\Request\Type\GeoCitySearchRequest;
 use JdeShipping\Request\Type\GeoScheduleRequest;
 use JdeShipping\Request\Type\GeoSearchByKladrRequest;
 use JdeShipping\Request\Type\GeoSearchRequest;
+use JdeShipping\Request\Type\ShipmentCostCalcByAddressRequest;
 use PHPUnit\Framework\TestCase;
 
 class JdeShippingTest extends TestCase
@@ -41,7 +42,7 @@ class JdeShippingTest extends TestCase
 			->setKladrCode('5002700102400');
 
 		$response = $this->jdeShipping->getGeoSearchByKladrRequest($geoKladr);
-		
+
 		$this->assertIsArray($response);
 		$this->assertNotEmpty($response);
 		$this->assertIsObject($response[0]);
@@ -53,7 +54,7 @@ class JdeShippingTest extends TestCase
 			->setMode(1);
 
 		$response = $this->jdeShipping->getGeoCitySearchRequest($geoKladr);
-		
+
 		$this->assertIsArray($response);
 		$this->assertNotEmpty($response);
 		$this->assertIsObject($response[0]);
@@ -66,11 +67,33 @@ class JdeShippingTest extends TestCase
 
 		$response = $this->jdeShipping->getGeoCitySearchRequest($geoKladr);
 
-		var_dump($response);
-		die;
-		
 		$this->assertIsArray($response);
 		$this->assertNotEmpty($response);
 		$this->assertIsObject($response[0]);
+	}
+
+	public function testShipmentCostCalcByAddressRequest(): void
+	{
+		$shipmentCalc = (new ShipmentCostCalcByAddressRequest())
+			->setAddrFrom('владивосток')
+			->setAddrTo('москва')
+			->setType(1)
+			->setWeight(2.167)
+			->setWidth(0.121)
+			->setHeight(0.121)
+			->setLength(2.135)
+			->setQuantity(1)
+			->setPickup(1)
+			->setDelivery(1)
+			->setDeclared(3670)
+			->setOversizeWeight(1)
+			->setOversizeVolume(1)
+			->setObrVolume(0.031);
+
+		$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+
+		$this->assertIsObject($response);
+		$this->assertNull($response->getError());
+		$this->assertIsFloat($response->getPrice());
 	}
 }

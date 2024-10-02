@@ -13,6 +13,8 @@ use JdeShipping\Client\Client;
  * @method Dto\LocationByKladr[] getGeoSearchByKladrRequest(Request\Type\GeoSearchByKladrRequest $request);
  * @method Dto\City[] getGeoCitySearchRequest(Request\Type\GeoCitySearchRequest $request);
  * @method Dto\Schedule[] getGeoScheduleRequest(Request\Type\GeoScheduleRequest $request);
+ * 
+ * @method Dto\ShipmentCalc getShipmentCostCalcByAddressRequest(Request\Type\ShipmentCostCalcByAddressRequest $request);
  */
 final class JdeShipping extends Client
 {
