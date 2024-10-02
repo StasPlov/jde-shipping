@@ -14,7 +14,7 @@ class JdeShippingTest extends TestCase
 
 	protected function setUp(): void
 	{
-		$this->jdeShipping = new jdeShipping();
+		$this->jdeShipping = new JdeShipping();
 		$this->jdeShipping
 			->setUser($_ENV['TEST_USER'] ?? '')
 			->setToken($_ENV['TEST_TOKEN'] ?? '');

@@ -38,7 +38,7 @@ composer require StasPlov/jde-shipping
 
 
 ```php
-$jdeShipping = new jdeShipping();
+$jdeShipping = new JdeShipping();
 
 $jdeShipping->setUser('1234');
 $jdeShipping->setToken('1234');
