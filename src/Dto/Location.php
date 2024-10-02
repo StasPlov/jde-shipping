@@ -56,7 +56,7 @@ class Location
 	/**
 	 * @JMS\Type("Dto\LocationCords")
 	 */
-	private LocationCords $coords;
+	private Cords $coords;
 
 	/**
 	 * @JMS\Type("string")
@@ -96,17 +96,17 @@ class Location
 	/**
 	 * @JMS\Type("string")
 	 */
-	private string $maxLGm;
+	private string $max_l_gm;
 
 	/**
 	 * @JMS\Type("string")
 	 */
-	private string $maxWGm;
+	private string $max_w_gm;
 
 	/**
 	 * @JMS\Type("string")
 	 */
-	private string $maxHGm;
+	private string $max_h_gm;
 
 	// Getters and setters for the properties
 
@@ -209,12 +209,12 @@ class Location
 		return $this;
 	}
 
-	public function getCoords(): array
+	public function getCoords(): Cords
 	{
 		return $this->coords;
 	}
 
-	public function setCoords(array $coords): self
+	public function setCoords(Cords $coords): self
 	{
 		$this->coords = $coords;
 		return $this;
@@ -299,34 +299,34 @@ class Location
 
 	public function getMaxLGm(): string
 	{
-		return $this->maxLGm;
+		return $this->max_l_gm;
 	}
 
-	public function setMaxLGm(string $maxLGm): self
+	public function setMaxLGm(string $max_l_gm): self
 	{
-		$this->maxLGm = $maxLGm;
+		$this->max_l_gm = $max_l_gm;
 		return $this;
 	}
 
 	public function getMaxWGm(): string
 	{
-		return $this->maxWGm;
+		return $this->max_w_gm;
 	}
 
-	public function setMaxWGm(string $maxWGm): self
+	public function setMaxWGm(string $max_w_gm): self
 	{
-		$this->maxWGm = $maxWGm;
+		$this->max_w_gm = $max_w_gm;
 		return $this;
 	}
 
 	public function getMaxHGm(): string
 	{
-		return $this->maxHGm;
+		return $this->max_h_gm;
 	}
 
-	public function setMaxHGm(string $maxHGm): self
+	public function setMaxHGm(string $max_h_gm): self
 	{
-		$this->maxHGm = $maxHGm;
+		$this->max_h_gm = $max_h_gm;
 		return $this;
 	}
 }

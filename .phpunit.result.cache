@@ -1,0 +1,1 @@
+{"version":1,"defects":{"JdeShipping\\Tests\\Client\\ClientTest::testRequestWithValidData":8,"JdeShipping\\Tests\\JdeShippingTest::testRequestWithValidData":8},"times":{"JdeShipping\\Tests\\Client\\ClientTest::testRequestWithValidData":1.106,"JdeShipping\\Tests\\JdeShippingTest::testRequestWithValidData":0.604,"JdeShipping\\Tests\\JdeShippingTest::testGetGeoSearchRequest":1.068}}

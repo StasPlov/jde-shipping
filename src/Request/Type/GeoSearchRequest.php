@@ -17,7 +17,7 @@ final class GeoSearchRequest extends Request
 	/**
 	 * @var int|null
 	 */
-	private $mode = null; 
+	private $mode = null;
 
     /**
      * Get the value of mode

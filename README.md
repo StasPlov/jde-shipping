@@ -22,7 +22,7 @@ Features:
 - [ ] Geography
   - [ ] Searching for terminals by KLADR
   - [ ] Searching for cities by types
-  - [ ] Searching by terminal type
+  - [x] Searching by terminal type
   - [ ] Branch working hours
 - [ ] Documents
   - [ ] Receiving documents
