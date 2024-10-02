@@ -39,9 +39,6 @@ class JdeShippingTest extends TestCase
 			->setKladrCode('5002700102400');
 
 		$response = $this->jdeShipping->getGeoSearchByKladrRequest($geoKladr);
-
-		var_dump($response);
-		die;
 		
 		$this->assertIsArray($response);
 		$this->assertNotEmpty($response);
