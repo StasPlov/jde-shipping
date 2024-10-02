@@ -19,7 +19,7 @@ Features:
   - [ ] Receiving information on shipment services
   - [ ] Receiving a package of documents
   - [ ] Receiving payment data for services
-- [ ] Geography
+- [x] Geography
   - [x] Searching for terminals by KLADR
   - [x] Searching for cities by types
   - [x] Searching by terminal type
