@@ -33,3 +33,18 @@ Features:
 ```bash
 composer require StasPlov/jde-shipping
 ```
+
+## How to use
+
+
+```php
+$jdeShipping = new jdeShipping();
+
+$jdeShipping->setUser('1234');
+$jdeShipping->setToken('1234');
+
+$geo = new GeoSearchRequest();
+$geo ->setMode(1);
+
+$response = $jdeShipping->getGeoSearchRequest($geo);
+```
