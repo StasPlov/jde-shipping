@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace JdeShipping\Request\Type;
 
-use JdeShipping\Dto\Location;
 use JdeShipping\Dto\LocationByKladr;
 use JdeShipping\Request\Request;
 

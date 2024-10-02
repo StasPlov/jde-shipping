@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace JdeShipping\Request\Type;
 
-use JdeShipping\Dto\Location;
 use JdeShipping\Request\Request;
 
 final class CargoStatus extends Request
@@ -17,12 +16,12 @@ final class CargoStatus extends Request
 	/**
 	 * @var string|null
 	 */
-	private $ttn = null;
+	private ?string $ttn = null;
 
 	/**
 	 * @var string|null
 	 */
-	private $ref = null;
+	private ?string $ref = null;
 
 	/**
 	 * Get the value of ttn
