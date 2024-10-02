@@ -10,14 +10,16 @@ class Cords
 {
 	/**
 	 * @JMS\Type("string")
+	 * @JMS\SerializedName("lat")
 	 */
 	private string $lat;
 
 	/**
 	 * @JMS\Type("string")
+	 * @JMS\SerializedName("lng")
 	 */
 	private string $lng;
-
+	
 	public function getLat(): string
 	{
 		return $this->lat;

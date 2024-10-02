@@ -10,6 +10,7 @@ use JdeShipping\Client\Client;
  * Тут отпеделяем динамические методы
  * 
  * @method Dto\Location[] getGeoSearchRequest(Request\Type\GeoSearchRequest $request);
+ * @method Dto\LocationByKladr[] getGeoSearchByKladrRequest(Request\Type\GeoSearchByKladrRequest $request);
  */
 final class JdeShipping extends Client
 {

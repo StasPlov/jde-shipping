@@ -34,17 +34,17 @@ class Location
 	private string $addr;
 
 	/**
-	 * @JMS\Type("boolean")
+	 * @JMS\Type("bool")
 	 */
 	private bool $aexOnly;
 
 	/**
-	 * @JMS\Type("boolean")
+	 * @JMS\Type("bool")
 	 */
 	private bool $mstPrAex;
 
 	/**
-	 * @JMS\Type("boolean")
+	 * @JMS\Type("bool")
 	 */
 	private bool $mstPrVirt;
 
@@ -54,7 +54,7 @@ class Location
 	private string $features;
 
 	/**
-	 * @JMS\Type("Dto\LocationCords")
+	 * @JMS\Type("JdeShipping\Dto\Cords")
 	 */
 	private Cords $coords;
 
@@ -90,23 +90,27 @@ class Location
 
 	/**
 	 * @JMS\Type("string")
+	 * @JMS\SerializedName("max_l_gm")
 	 */
 	private string $maxObyomGm;
 
 	/**
 	 * @JMS\Type("string")
+	 * @JMS\SerializedName("max_l_gm")
 	 */
-	private string $max_l_gm;
+	private string $maxLGm;
 
 	/**
 	 * @JMS\Type("string")
+	 * @JMS\SerializedName("max_w_gm")
 	 */
-	private string $max_w_gm;
+	private string $maxWGm;
 
 	/**
 	 * @JMS\Type("string")
+	 * @JMS\SerializedName("max_h_gm")
 	 */
-	private string $max_h_gm;
+	private string $maxHGm;
 
 	// Getters and setters for the properties
 
@@ -299,34 +303,34 @@ class Location
 
 	public function getMaxLGm(): string
 	{
-		return $this->max_l_gm;
+		return $this->maxLGm;
 	}
 
-	public function setMaxLGm(string $max_l_gm): self
+	public function setMaxLGm(string $maxLGm): self
 	{
-		$this->max_l_gm = $max_l_gm;
+		$this->maxLGm = $maxLGm;
 		return $this;
 	}
 
 	public function getMaxWGm(): string
 	{
-		return $this->max_w_gm;
+		return $this->maxWGm;
 	}
 
-	public function setMaxWGm(string $max_w_gm): self
+	public function setMaxWGm(string $maxWGm): self
 	{
-		$this->max_w_gm = $max_w_gm;
+		$this->maxWGm = $maxWGm;
 		return $this;
 	}
 
 	public function getMaxHGm(): string
 	{
-		return $this->max_h_gm;
+		return $this->maxHGm;
 	}
 
-	public function setMaxHGm(string $max_h_gm): self
+	public function setMaxHGm(string $maxHGm): self
 	{
-		$this->max_h_gm = $max_h_gm;
+		$this->maxHGm = $maxHGm;
 		return $this;
 	}
 }

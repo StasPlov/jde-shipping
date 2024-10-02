@@ -7,6 +7,8 @@ namespace JdeShipping\Client;
 use Exception;
 use JdeShipping\Exception\ClientException;
 use JdeShipping\Request\Request;
+use JMS\Serializer\Naming\CamelCaseNamingStrategy;
+use JMS\Serializer\Naming\IdenticalPropertyNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpClient\HttpClient;
@@ -43,7 +45,9 @@ class Client implements ClientInterface
 	public function __construct(HttpClientInterface $httpClient = null, SerializerInterface $serializer = null)
 	{
 		$this->httpClient = $httpClient ?? HttpClient::create();
-		$this->serializer = $serializer ?? SerializerBuilder::create()->build();
+		$this->serializer = $serializer ?? SerializerBuilder::create()
+			->setPropertyNamingStrategy(new CamelCaseNamingStrategy())
+			->build();
 	}
 
 	/**

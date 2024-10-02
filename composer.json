@@ -26,6 +26,7 @@
 	"require": {
 		"php": "^7.4 || ^8.2",
 		"ext-json": "*",
+		"doctrine/annotations": "^2.0",
 		"jms/serializer": "^3.30",
 		"symfony/http-client": "^7.1"
 	},
