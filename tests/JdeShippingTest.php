@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JdeShipping\Tests;
 
 use JdeShipping\JdeShipping;
+use JdeShipping\Request\Type\GeoCitySearchRequest;
 use JdeShipping\Request\Type\GeoSearchByKladrRequest;
 use JdeShipping\Request\Type\GeoSearchRequest;
 use PHPUnit\Framework\TestCase;
@@ -39,6 +40,21 @@ class JdeShippingTest extends TestCase
 			->setKladrCode('5002700102400');
 
 		$response = $this->jdeShipping->getGeoSearchByKladrRequest($geoKladr);
+		
+		$this->assertIsArray($response);
+		$this->assertNotEmpty($response);
+		$this->assertIsObject($response[0]);
+	}
+
+	public function testGeoCitySearchRequest(): void
+	{
+		$geoKladr = (new GeoCitySearchRequest())
+			->setMode(1);
+
+		$response = $this->jdeShipping->getGeoCitySearchRequest($geoKladr);
+
+		var_dump($response);
+		die;
 		
 		$this->assertIsArray($response);
 		$this->assertNotEmpty($response);

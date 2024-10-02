@@ -21,7 +21,7 @@ Features:
   - [ ] Receiving payment data for services
 - [ ] Geography
   - [x] Searching for terminals by KLADR
-  - [ ] Searching for cities by types
+  - [x] Searching for cities by types
   - [x] Searching by terminal type
   - [ ] Branch working hours
 - [ ] Documents

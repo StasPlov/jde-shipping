@@ -11,6 +11,7 @@ use JdeShipping\Client\Client;
  * 
  * @method Dto\Location[] getGeoSearchRequest(Request\Type\GeoSearchRequest $request);
  * @method Dto\LocationByKladr[] getGeoSearchByKladrRequest(Request\Type\GeoSearchByKladrRequest $request);
+ * @method Dto\City[] getGeoCitySearchRequest(Request\Type\GeoCitySearchRequest $request);
  */
 final class JdeShipping extends Client
 {
