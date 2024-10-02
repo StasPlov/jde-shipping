@@ -6,7 +6,7 @@ namespace JdeShipping\Dto;
 
 use JMS\Serializer\Annotation as JMS;
 
-class ShipmentCalc
+class ShipmentCalcAddress
 {
 	/**
 	 * @JMS\Type("JdeShipping\Dto\ShipmentAddress")

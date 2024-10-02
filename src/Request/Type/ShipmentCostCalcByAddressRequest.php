@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace JdeShipping\Request\Type;
 
-use JdeShipping\Dto\ShipmentCalc;
+use JdeShipping\Dto\ShipmentCalcAddress;
 use JdeShipping\Request\Request;
 use JMS\Serializer\Annotation as JMS;
 
@@ -13,7 +13,7 @@ final class ShipmentCostCalcByAddressRequest extends Request
 	const PRIVATE = true;
 	const METHOD = 'GET';
 	const URL = 'calculator/PriceAddress';
-	const DTO = ShipmentCalc::class;
+	const DTO = ShipmentCalcAddress::class;
 
 	/**
 	 * Адрес населенного пункта отправления
