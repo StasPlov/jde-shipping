@@ -48,3 +48,29 @@ $geo ->setMode(1);
 
 $response = $jdeShipping->getGeoSearchRequest($geo);
 ```
+
+
+## Cost Calculation
+
+### Delivery cost calculation by addresses
+```php
+$shipmentCalc = (new ShipmentCostCalcByAddressRequest())
+	->setAddrFrom('владивосток')
+	->setAddrTo('москва')
+	->setType(1)
+	->setWeight(2.167)
+	->setWidth(0.121)
+	->setHeight(0.121)
+	->setLength(2.135)
+	->setQuantity(1)
+	->setPickup(1)
+	->setDelivery(1)
+	->setDeclared(3670)
+	->setOversizeWeight(1)
+	->setOversizeVolume(1)
+	->setObrVolume(0.031);
+
+$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+
+$cost = $response->getPrice();
+```
