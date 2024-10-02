@@ -34,8 +34,7 @@ Features:
 composer require StasPlov/jde-shipping
 ```
 
-## How to use
-
+# How to use
 
 ```php
 $jdeShipping = new JdeShipping();
@@ -48,7 +47,6 @@ $geo ->setMode(1);
 
 $response = $jdeShipping->getGeoSearchRequest($geo);
 ```
-
 
 ## Cost Calculation
 
