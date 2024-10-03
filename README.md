@@ -72,3 +72,30 @@ $response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCal
 
 $cost = $response->getPrice();
 ```
+
+### Delivery cost calculation
+```php
+$shipmentCalc = (new ShipmentCostCalcRequest())
+	->setFrom('1010005858')
+	->setTo('1125904247254472')
+	->setType(1)
+	->setWeight(216)
+	->setVolume(0.41);
+
+$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+
+$cost = $response->getPrice();
+```
+
+## Geography
+
+### Searching for terminals by KLADR
+```php
+$geoKladr = (new GeoSearchByKladrRequest())
+	->setKladrCode('5002700102400');
+
+$response = $this->jdeShipping->getGeoSearchByKladrRequest($geoKladr);
+
+$city = $response[0]->getCity();
+$address = $response[0]->getAddr();
+```
