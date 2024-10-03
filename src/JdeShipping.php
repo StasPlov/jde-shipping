@@ -9,13 +9,15 @@ use JdeShipping\Client\Client;
 /** 
  * Тут отпеделяем динамические методы
  * 
- * @method Dto\Location[] getGeoSearchRequest(Request\Type\GeoSearchRequest $request);
- * @method Dto\LocationByKladr[] getGeoSearchByKladrRequest(Request\Type\GeoSearchByKladrRequest $request);
- * @method Dto\City[] getGeoCitySearchRequest(Request\Type\GeoCitySearchRequest $request);
- * @method Dto\Schedule[] getGeoScheduleRequest(Request\Type\GeoScheduleRequest $request);
+ * @method Dto\Location[] 			getGeoSearch(Request\Type\GeoSearchRequest $request);
+ * @method Dto\LocationByKladr[] 	getGeoSearchByKladr(Request\Type\GeoSearchByKladrRequest $request);
+ * @method Dto\City[] 				getGeoCitySearch(Request\Type\GeoCitySearchRequest $request);
+ * @method Dto\Schedule[] 			getGeoSchedule(Request\Type\GeoScheduleRequest $request);
  * 
- * @method Dto\ShipmentCalcAddress getShipmentCostCalcByAddressRequest(Request\Type\ShipmentCostCalcByAddressRequest $request);
- * @method Dto\ShipmentCalc getShipmentCostCalcRequest(Request\Type\ShipmentCostCalcRequest $request);
+ * @method Dto\ShipmentCalcAddress 	getShipmentCostCalcByAddress(Request\Type\ShipmentCostCalcByAddressRequest $request);
+ * @method Dto\ShipmentCalc 		getShipmentCostCalc(Request\Type\ShipmentCostCalcRequest $request);
+ * 
+ * @method Dto\DocumentCode[] 		getServiceList(Request\Type\ServiceDocCodeListRequest $request);
  */
 final class JdeShipping extends Client
 {

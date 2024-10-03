@@ -9,6 +9,7 @@ use JdeShipping\Request\Type\GeoCitySearchRequest;
 use JdeShipping\Request\Type\GeoScheduleRequest;
 use JdeShipping\Request\Type\GeoSearchByKladrRequest;
 use JdeShipping\Request\Type\GeoSearchRequest;
+use JdeShipping\Request\Type\ServiceDocCodeListRequest;
 use JdeShipping\Request\Type\ShipmentCostCalcByAddressRequest;
 use JdeShipping\Request\Type\ShipmentCostCalcRequest;
 use PHPUnit\Framework\TestCase;
@@ -25,55 +26,55 @@ class JdeShippingTest extends TestCase
 			->setToken($_ENV['TEST_TOKEN'] ?? '');
 	}
 
-	public function testGetGeoSearchRequest(): void
+	public function testGetGeoSearch(): void
 	{
 		$geo = (new GeoSearchRequest())
 			->setMode(1);
 
-		$response = $this->jdeShipping->getGeoSearchRequest($geo);
+		$response = $this->jdeShipping->getGeoSearch($geo);
 
 		$this->assertIsArray($response);
 		$this->assertNotEmpty($response);
 		$this->assertIsObject($response[0]);
 	}
 
-	public function testGeoSearchByKladrRequest(): void
+	public function testGeoSearchByKladr(): void
 	{
 		$geoKladr = (new GeoSearchByKladrRequest())
 			->setKladrCode('5002700102400');
 
-		$response = $this->jdeShipping->getGeoSearchByKladrRequest($geoKladr);
+		$response = $this->jdeShipping->getGeoSearchByKladr($geoKladr);
 
 		$this->assertIsArray($response);
 		$this->assertNotEmpty($response);
 		$this->assertIsObject($response[0]);
 	}
 
-	public function testGeoCitySearchRequest(): void
+	public function testGeoCitySearch(): void
 	{
 		$geoKladr = (new GeoCitySearchRequest())
 			->setMode(1);
 
-		$response = $this->jdeShipping->getGeoCitySearchRequest($geoKladr);
+		$response = $this->jdeShipping->getGeoCitySearch($geoKladr);
 
 		$this->assertIsArray($response);
 		$this->assertNotEmpty($response);
 		$this->assertIsObject($response[0]);
 	}
 
-	public function testGeoScheduleRequest(): void
+	public function testGeoSchedule(): void
 	{
 		$geoKladr = (new GeoScheduleRequest())
 			->setCode('1125899906842653');
 
-		$response = $this->jdeShipping->getGeoCitySearchRequest($geoKladr);
+		$response = $this->jdeShipping->getGeoCitySearch($geoKladr);
 
 		$this->assertIsArray($response);
 		$this->assertNotEmpty($response);
 		$this->assertIsObject($response[0]);
 	}
 
-	public function testShipmentCostCalcByAddressRequest(): void
+	public function testShipmentCostCalcByAddress(): void
 	{
 		$shipmentCalc = (new ShipmentCostCalcByAddressRequest())
 			->setAddrFrom('владивосток')
@@ -91,14 +92,14 @@ class JdeShippingTest extends TestCase
 			->setOversizeVolume(1)
 			->setObrVolume(0.031);
 
-		$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+		$response = $this->jdeShipping->getShipmentCostCalcByAddress($shipmentCalc);
 
 		$this->assertIsObject($response);
 		$this->assertNull($response->getError());
 		$this->assertIsFloat($response->getPrice());
 	}
 
-	public function testShipmentCostCalcRequest(): void
+	public function testShipmentCostCalc(): void
 	{
 		$shipmentCalc = (new ShipmentCostCalcRequest())
 			->setFrom('1010005858')
@@ -107,14 +108,14 @@ class JdeShippingTest extends TestCase
 			->setWeight(216)
 			->setVolume(0.41);
 
-		$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+		$response = $this->jdeShipping->getShipmentCostCalcByAddress($shipmentCalc);
 
 		$this->assertIsObject($response);
 		$this->assertNull($response->getError());
 		$this->assertIsFloat($response->getPrice());
 	}
-	
-	public function testShipmentCostCalcRequestServiceTest(): void
+
+	public function testShipmentCostCalc_Service(): void
 	{
 		$shipmentCalc = (new ShipmentCostCalcRequest())
 			->setFrom('1010005858')
@@ -139,7 +140,7 @@ class JdeShippingTest extends TestCase
 		$this->assertNull($shipmentCalc->getServices());
 	}
 
-	public function testShipmentCostCalcRequestSmartTest(): void
+	public function testShipmentCostCalc_Smart(): void
 	{
 		$shipmentCalc = (new ShipmentCostCalcRequest())
 			->setFrom('Москва')
@@ -148,12 +149,20 @@ class JdeShippingTest extends TestCase
 			->setWeight(216)
 			->setVolume(0.41)
 			->setSmart(true);
-			
 
-		$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+		$response = $this->jdeShipping->getShipmentCostCalcByAddress($shipmentCalc);
 
 		$this->assertIsObject($response);
 		$this->assertNull($response->getError());
 		$this->assertIsFloat($response->getPrice());
+	}
+
+	public function testServiceDocCodeList(): void
+	{
+		$response = $this->jdeShipping->getServiceList(
+			new ServiceDocCodeListRequest()
+		);
+
+		$this->assertIsArray($response);
 	}
 }

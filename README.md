@@ -15,7 +15,7 @@ Features:
   - [ ] Simplified shipment delivery status by waybill number
   - [ ] Setting a delivery restriction on a shipment
 - [ ] Services
-  - [ ] Receiving a list of service codes
+  - [x] Receiving a list of service codes
   - [ ] Receiving information on shipment services
   - [ ] Receiving a package of documents
   - [ ] Receiving payment data for services
@@ -45,7 +45,7 @@ $jdeShipping->setToken('1234');
 $geo = new GeoSearchRequest();
 $geo ->setMode(1);
 
-$result = $jdeShipping->getGeoSearchRequest($geo);
+$result = $jdeShipping->getGeoSearch($geo);
 ```
 
 ## Cost Calculation
@@ -68,7 +68,7 @@ $shipmentCalc = (new ShipmentCostCalcByAddressRequest())
 	->setOversizeVolume(1)
 	->setObrVolume(0.031);
 
-$result = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+$result = $this->jdeShipping->getShipmentCostCalcByAddress($shipmentCalc);
 
 if($result->isOk()) {
 	$cost = $result->getPrice();
@@ -84,7 +84,7 @@ $shipmentCalc = (new ShipmentCostCalcRequest())
 	->setWeight(216)
 	->setVolume(0.41);
 
-$result = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+$result = $this->jdeShipping->getShipmentCostCalcByAddress($shipmentCalc);
 
 if($result->isOk()) {
 	$cost = $result->getPrice();
@@ -102,7 +102,7 @@ $shipmentCalc = (new ShipmentCostCalcRequest())
 	->setSmart(true);
 	
 
-$result = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+$result = $this->jdeShipping->getShipmentCostCalcByAddress($shipmentCalc);
 
 if($result->isOk()) {
 	$cost = $result->getPrice();
@@ -117,7 +117,7 @@ if($result->isOk()) {
 $geoKladr = (new GeoSearchByKladrRequest())
 	->setKladrCode('5002700102400');
 
-$result = $this->jdeShipping->getGeoSearchByKladrRequest($geoKladr);
+$result = $this->jdeShipping->getGeoSearchByKladr($geoKladr);
 
 if(!empty($result)) {
 	$city = $result[0]->getCity();
