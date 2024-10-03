@@ -33,7 +33,7 @@ final class GeoScheduleRequest extends Request
      *
      * @param string|null  $code  
      *
-     * @return self
+     * @return static
      */
     public function setCode($code): self {
         $this->code = $code;

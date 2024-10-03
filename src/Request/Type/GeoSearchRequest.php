@@ -33,7 +33,7 @@ final class GeoSearchRequest extends Request
      *
      * @param int|null  $mode  
      *
-     * @return self
+     * @return static
      */
     public function setMode($mode): self {
         $this->mode = $mode;

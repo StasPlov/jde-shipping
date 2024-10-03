@@ -113,4 +113,47 @@ class JdeShippingTest extends TestCase
 		$this->assertNull($response->getError());
 		$this->assertIsFloat($response->getPrice());
 	}
+	
+	public function testShipmentCostCalcRequestServiceTest(): void
+	{
+		$shipmentCalc = (new ShipmentCostCalcRequest())
+			->setFrom('1010005858')
+			->setTo('1125904247254472')
+			->setType(1)
+			->setWeight(216)
+			->setVolume(0.41)
+			->setServices([
+				JdeShipping::SERVICES_DLU,
+				JdeShipping::SERVICES_CRGREC
+			]);
+
+		$this->assertIsArray($shipmentCalc->getServices());
+
+		$shipmentCalc = (new ShipmentCostCalcRequest())
+			->setFrom('1010005858')
+			->setTo('1125904247254472')
+			->setType(1)
+			->setWeight(216)
+			->setVolume(0.41);
+
+		$this->assertNull($shipmentCalc->getServices());
+	}
+
+	public function testShipmentCostCalcRequestSmartTest(): void
+	{
+		$shipmentCalc = (new ShipmentCostCalcRequest())
+			->setFrom('Москва')
+			->setTo('Владивосток')
+			->setType(1)
+			->setWeight(216)
+			->setVolume(0.41)
+			->setSmart(true);
+			
+
+		$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+
+		$this->assertIsObject($response);
+		$this->assertNull($response->getError());
+		$this->assertIsFloat($response->getPrice());
+	}
 }

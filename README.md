@@ -2,10 +2,10 @@
 
 Features:
 
-- [ ] Cost Calculation
+- [x] Cost Calculation
   - [x] Delivery cost calculation by addresses
   - [x] Delivery cost calculation
-  - [ ] SMART delivery cost calculation (by city names)
+  - [x] SMART delivery cost calculation (by city names)
 - [ ] Requests
   - [ ] New delivery request
   - [ ] List of requests

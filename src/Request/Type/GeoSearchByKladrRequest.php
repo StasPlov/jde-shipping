@@ -69,7 +69,7 @@ final class GeoSearchByKladrRequest extends Request
 	 *
 	 * @param string|null  $kladrCode  
 	 *
-	 * @return self
+	 * @return static
 	 */
 	public function setKladrCode($kladrCode): self
 	{
@@ -93,7 +93,7 @@ final class GeoSearchByKladrRequest extends Request
 	 *
 	 * @param string|null  $mstCount  
 	 *
-	 * @return self
+	 * @return static
 	 */
 	public function setMstCount($mstCount): self
 	{
@@ -117,7 +117,7 @@ final class GeoSearchByKladrRequest extends Request
 	 *
 	 * @param string|null  $mstIn  
 	 *
-	 * @return self
+	 * @return static
 	 */
 	public function setMstIn($mstIn): self
 	{
@@ -141,7 +141,7 @@ final class GeoSearchByKladrRequest extends Request
 	 *
 	 * @param string|null  $mstOut  
 	 *
-	 * @return self
+	 * @return static
 	 */
 	public function setMstOut($mstOut): self
 	{
@@ -165,7 +165,7 @@ final class GeoSearchByKladrRequest extends Request
 	 *
 	 * @param string|null  $mstAex  
 	 *
-	 * @return self
+	 * @return static
 	 */
 	public function setMstAex($mstAex): self
 	{
@@ -189,7 +189,7 @@ final class GeoSearchByKladrRequest extends Request
 	 *
 	 * @param string|null  $mstDistance  
 	 *
-	 * @return self
+	 * @return static
 	 */
 	public function setMstDistance($mstDistance): self
 	{
@@ -213,7 +213,7 @@ final class GeoSearchByKladrRequest extends Request
 	 *
 	 * @param string|null  $nearKg  
 	 *
-	 * @return self
+	 * @return static
 	 */
 	public function setNearKg($nearKg): self
 	{
@@ -237,7 +237,7 @@ final class GeoSearchByKladrRequest extends Request
 	 *
 	 * @param string|null  $prAexo  
 	 *
-	 * @return self
+	 * @return static
 	 */
 	public function setPrAexo($prAexo): self
 	{
