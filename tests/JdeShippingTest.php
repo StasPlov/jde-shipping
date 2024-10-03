@@ -10,6 +10,7 @@ use JdeShipping\Request\Type\GeoScheduleRequest;
 use JdeShipping\Request\Type\GeoSearchByKladrRequest;
 use JdeShipping\Request\Type\GeoSearchRequest;
 use JdeShipping\Request\Type\ShipmentCostCalcByAddressRequest;
+use JdeShipping\Request\Type\ShipmentCostCalcRequest;
 use PHPUnit\Framework\TestCase;
 
 class JdeShippingTest extends TestCase
@@ -89,6 +90,22 @@ class JdeShippingTest extends TestCase
 			->setOversizeWeight(1)
 			->setOversizeVolume(1)
 			->setObrVolume(0.031);
+
+		$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+
+		$this->assertIsObject($response);
+		$this->assertNull($response->getError());
+		$this->assertIsFloat($response->getPrice());
+	}
+
+	public function testShipmentCostCalcRequest(): void
+	{
+		$shipmentCalc = (new ShipmentCostCalcRequest())
+			->setFrom('1010005858')
+			->setTo('1125904247254472')
+			->setType(1)
+			->setWeight(216)
+			->setVolume(0.41);
 
 		$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
 
