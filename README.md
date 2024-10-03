@@ -45,7 +45,7 @@ $jdeShipping->setToken('1234');
 $geo = new GeoSearchRequest();
 $geo ->setMode(1);
 
-$response = $jdeShipping->getGeoSearchRequest($geo);
+$result = $jdeShipping->getGeoSearchRequest($geo);
 ```
 
 ## Cost Calculation
@@ -68,9 +68,11 @@ $shipmentCalc = (new ShipmentCostCalcByAddressRequest())
 	->setOversizeVolume(1)
 	->setObrVolume(0.031);
 
-$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+$result = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
 
-$cost = $response->getPrice();
+if($result->isOk()) {
+	$cost = $result->getPrice();
+}
 ```
 
 ### Delivery cost calculation
@@ -82,9 +84,30 @@ $shipmentCalc = (new ShipmentCostCalcRequest())
 	->setWeight(216)
 	->setVolume(0.41);
 
-$response = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+$result = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
 
-$cost = $response->getPrice();
+if($result->isOk()) {
+	$cost = $result->getPrice();
+}
+```
+
+### SMART delivery cost calculation (by city names)
+```php
+$shipmentCalc = (new ShipmentCostCalcRequest())
+	->setFrom('Москва')
+	->setTo('Владивосток')
+	->setType(1)
+	->setWeight(216)
+	->setVolume(0.41)
+	->setSmart(true);
+	
+
+$result = $this->jdeShipping->getShipmentCostCalcByAddressRequest($shipmentCalc);
+
+if($result->isOk()) {
+	$cost = $result->getPrice();
+}
+
 ```
 
 ## Geography
@@ -94,8 +117,10 @@ $cost = $response->getPrice();
 $geoKladr = (new GeoSearchByKladrRequest())
 	->setKladrCode('5002700102400');
 
-$response = $this->jdeShipping->getGeoSearchByKladrRequest($geoKladr);
+$result = $this->jdeShipping->getGeoSearchByKladrRequest($geoKladr);
 
-$city = $response[0]->getCity();
-$address = $response[0]->getAddr();
+if(!empty($result)) {
+	$city = $result[0]->getCity();
+	$address = $result[0]->getAddr();
+}
 ```

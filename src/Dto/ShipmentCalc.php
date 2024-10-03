@@ -224,25 +224,41 @@ class ShipmentCalc
 		return $this;
 	}
 
-    /**
-     * Get the value of error
-     *
-     * @return string|null
-     */
-    public function getError(): ?string {
-        return $this->error;
-    }
+	/**
+	 * Get the value of error
+	 *
+	 * @return string|null
+	 */
+	public function getError(): ?string
+	{
+		return $this->error;
+	}
 
-    /**
-     * Set the value of error
-     *
-     * @param string|null  $error  
-     *
-     * @return self
-     */
-    public function setError($error): self {
-        $this->error = $error;
+	/**
+	 * Set the value of error
+	 *
+	 * @param string|null  $error  
+	 *
+	 * @return self
+	 */
+	public function setError($error): self
+	{
+		$this->error = $error;
 
-        return $this;
-    }
+		return $this;
+	}
+
+	/**
+	 * Check calc success
+	 *
+	 * @return boolean
+	 */
+	public function isOk(): bool
+	{
+		if ($this->getError() === null && $this->getResult()) {
+			return true;
+		}
+
+		return false;
+	}
 }
