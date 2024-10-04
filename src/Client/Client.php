@@ -28,9 +28,14 @@ class Client implements ClientInterface
 	private SerializerInterface $serializer;
 
 	/**
+	 * @var int
+	 */
+	private int $timeout = self::BASE_TIMEOUT;
+
+	/**
 	 * @var string
 	 */
-	private string $baseUrl = self::BASE_URL;
+	private string $url = self::BASE_URL;
 
 	/**
 	 * @var string|null
@@ -84,25 +89,49 @@ class Client implements ClientInterface
 	}
 
 	/**
-	 * Get the value of baseUrl
+	 * Get the value of timeout
 	 *
-	 * @return string
+	 * @return int
 	 */
-	public function getBaseUrl(): string
+	public function getTimeout(): int
 	{
-		return $this->baseUrl;
+		return $this->timeout;
 	}
 
 	/**
-	 * Set the value of baseUrl
+	 * Set the value of timeout
 	 *
-	 * @param string $baseUrl  
+	 * @param int  $timeout  
 	 *
 	 * @return self
 	 */
-	public function setBaseUrl(string $baseUrl): self
+	public function setTimeout(int $timeout): self
 	{
-		$this->baseUrl = rtrim($baseUrl, '/');
+		$this->timeout = $timeout;
+
+		return $this;
+	}
+
+	/**
+	 * Get the value of Url
+	 *
+	 * @return string
+	 */
+	public function getUrl(): string
+	{
+		return $this->url;
+	}
+
+	/**
+	 * Set the value of url
+	 *
+	 * @param string $url  
+	 *
+	 * @return self
+	 */
+	public function setUrl(string $url): self
+	{
+		$this->url = rtrim($url, '/');
 		return $this;
 	}
 
@@ -177,7 +206,7 @@ class Client implements ClientInterface
 
 			$options = [
 				$sendType => $data,
-				'timeout' => self::BASE_TIMEOUT
+				'timeout' => $this->timeout
 			];
 
 			$response = $this->httpClient->request($method, $url, $options);
@@ -197,7 +226,7 @@ class Client implements ClientInterface
 	 */
 	private function checkBaseSetting(): void
 	{
-		$this->checkBaseUrl();
+		$this->checkUrl();
 		$this->checkUser();
 		$this->checkToken();
 	}
@@ -208,9 +237,9 @@ class Client implements ClientInterface
 	 * @return void
 	 * @throws ClientException
 	 */
-	private function checkBaseUrl(): void
+	private function checkUrl(): void
 	{
-		if (empty($this->getBaseUrl())) {
+		if (empty($this->getUrl())) {
 			throw new ClientException('Base URL is not set', 500);
 		}
 	}
@@ -252,7 +281,7 @@ class Client implements ClientInterface
 	private function buildUrl(string $endpoint, array $params = []): string
 	{
 		$query = http_build_query($params);
-		return $this->baseUrl . '/' . ltrim($endpoint, '/') . ($query ? '?' . $query : '');
+		return $this->url . '/' . ltrim($endpoint, '/') . ($query ? '?' . $query : '');
 	}
 
 	/**

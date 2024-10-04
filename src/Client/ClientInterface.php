@@ -25,7 +25,7 @@ interface ClientInterface
 	 * @param string $token
 	 * @return self
 	 */
-	public function setBaseUrl(string $baseUrl): self;
+	public function setUrl(string $url): self;
 
 	/**
 	 * @param Request $request
