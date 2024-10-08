@@ -210,9 +210,6 @@ class JdeShippingTest extends TestCase
 			new OrderListRequest()
 		);
 
-		var_dump($response[0]->getId());
-		$response[0]->getInfo()->getCargostatus()
-
 		$this->assertIsArray($response);
 	}
 
