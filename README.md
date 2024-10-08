@@ -6,9 +6,9 @@ Features:
   - [x] Delivery cost calculation by addresses
   - [x] Delivery cost calculation
   - [x] SMART delivery cost calculation (by city names)
-- [ ] Requests
-  - [ ] New delivery request
-  - [ ] List of requests
+- [x] Requests
+  - [x] New delivery request
+  - [x] List of requests
 - [ ] Shipments
   - [ ] Receiving new shipment statuses
   - [ ] Shipment delivery status by waybill number

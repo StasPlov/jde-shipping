@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JdeShipping\Request\Type;
+namespace JdeShipping\Request\Shipment;
 
 use JdeShipping\Dto\ShipmentCalc;
 

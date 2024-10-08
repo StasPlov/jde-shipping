@@ -7,6 +7,7 @@ namespace JdeShipping\Client;
 use Exception;
 use JdeShipping\Exception\ClientException;
 use JdeShipping\Exception\RemoteServerException;
+use JdeShipping\Request\Order\OrderCreateRequest;
 use JdeShipping\Request\Request;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
@@ -161,15 +162,26 @@ class Client implements ClientInterface
 	public function request(Request $request)
 	{
 		$this->checkBaseSetting();
-
-		$url = $this->buildUrl($request::URL);
 		$data = $request->jsonSerialize();
 
+		/* if ($request instanceof OrderCreateRequest) {
+			var_dump($data);
+			die;
+		} */
+
+		$params = [];
+
 		if ($request::PRIVATE) {
-			$data[self::BASE_REQUIRE_USER] = $this->getUser();
-			$data[self::BASE_REQUIRE_TOKEN] = $this->getToken();
+			if ($request::METHOD === self::METHOD_GET) {
+				$data[self::BASE_REQUIRE_USER] = $this->getUser();
+				$data[self::BASE_REQUIRE_TOKEN] = $this->getToken();
+			} else { // if POST
+				$params[self::BASE_REQUIRE_USER] = $this->getUser();
+				$params[self::BASE_REQUIRE_TOKEN] = $this->getToken();
+			}
 		}
 
+		$url = $this->buildUrl($request::URL, $params);
 		$deserializeType = $request::DTO;
 
 		$result = $this->send(
@@ -177,6 +189,11 @@ class Client implements ClientInterface
 			$request::METHOD,
 			$data
 		);
+
+		// if empty array response
+		if (json_decode($result, true) === [] && json_last_error() === JSON_ERROR_NONE) {
+			return [];
+		}
 
 		if (self::isJsonArray($result)) {
 			$deserializeType = "array<$deserializeType>";
@@ -212,6 +229,9 @@ class Client implements ClientInterface
 			$response = $this->httpClient->request($method, $url, $options);
 			$result = $response->getContent();
 		} catch (Exception $e) {
+
+			/* print_r($response);
+			die; */
 			throw new ClientException($e->getMessage(), $e->getCode());
 		} finally {
 			return $result;

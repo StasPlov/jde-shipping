@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JdeShipping\Request\Type;
+namespace JdeShipping\Request\Geo;
 
 use JdeShipping\Dto\Schedule;
 use JdeShipping\Request\Request;

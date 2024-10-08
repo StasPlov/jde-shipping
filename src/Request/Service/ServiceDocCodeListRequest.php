@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JdeShipping\Request\Type;
+namespace JdeShipping\Request\Service;
 
 use JdeShipping\Dto\DocumentCode;
 use JdeShipping\Request\Request;
