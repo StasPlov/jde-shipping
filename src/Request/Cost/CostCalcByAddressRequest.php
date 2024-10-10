@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace JdeShipping\Request\Cost;
 
-use JdeShipping\Dto\ShipmentCalcAddress;
+use JdeShipping\Dto\CostCalcAddress;
 
 final class CostCalcByAddressRequest extends CostCalcAbstract
 {
 	const PRIVATE = true;
 	const METHOD = 'GET';
 	const URL = 'calculator/PriceAddress';
-	const DTO = ShipmentCalcAddress::class;
+	const DTO = CostCalcAddress::class;
 
 	/**
 	 * @var string|null

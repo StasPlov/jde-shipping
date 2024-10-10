@@ -6,7 +6,7 @@ namespace JdeShipping\Dto;
 
 use JMS\Serializer\Annotation as JMS;
 
-class ShipmentService
+class CostCalcService
 {
 	/**
 	 * @JMS\Type("string")

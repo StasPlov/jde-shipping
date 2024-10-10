@@ -6,7 +6,7 @@ namespace JdeShipping\Dto;
 
 use JMS\Serializer\Annotation as JMS;
 
-class ShipmentCalc
+class CostCalc
 {
 	/**
 	 * @JMS\Type("string")
@@ -39,8 +39,8 @@ class ShipmentCalc
 	private ?int $maxdays = null;
 
 	/**
-	 * @JMS\Type("array<JdeShipping\Dto\ShipmentService>")
-	 * @var array<ShipmentService>
+	 * @JMS\Type("array<JdeShipping\Dto\CostCalcService>")
+	 * @var array<CostCalcService>
 	 */
 	private $services;
 
@@ -179,7 +179,7 @@ class ShipmentCalc
 	/**
 	 * Get the value of services
 	 *
-	 * @return array<ShipmentService>
+	 * @return array<CostCalcService>
 	 */
 	public function getServices()
 	{
@@ -189,7 +189,7 @@ class ShipmentCalc
 	/**
 	 * Set the value of services
 	 *
-	 * @param array<ShipmentService>  $services  
+	 * @param array<CostCalcService>  $services  
 	 *
 	 * @return self
 	 */

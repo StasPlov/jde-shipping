@@ -6,7 +6,7 @@ namespace JdeShipping\Dto;
 
 use JMS\Serializer\Annotation as JMS;
 
-class ShipmentAddress
+class CostAddress
 {
 	/**
 	 * @JMS\Type("int")

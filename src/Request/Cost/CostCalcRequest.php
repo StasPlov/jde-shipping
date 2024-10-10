@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace JdeShipping\Request\Cost;
 
-use JdeShipping\Dto\ShipmentCalc;
+use JdeShipping\Dto\CostCalc;
 
 final class CostCalcRequest extends CostCalcAbstract
 {
 	const PRIVATE = true;
 	const METHOD = 'GET';
 	const URL = 'calculator/price';
-	const DTO = ShipmentCalc::class;
+	const DTO = CostCalc::class;
 
 	/**
 	 * @var string|null

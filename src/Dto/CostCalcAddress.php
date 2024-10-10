@@ -6,26 +6,26 @@ namespace JdeShipping\Dto;
 
 use JMS\Serializer\Annotation as JMS;
 
-class ShipmentCalcAddress extends ShipmentCalc
+class CostCalcAddress extends CostCalc
 {
 	/**
-	 * @JMS\Type("JdeShipping\Dto\ShipmentAddress")
-	 * @var ShipmentAddress|null
+	 * @JMS\Type("JdeShipping\Dto\CostAddress")
+	 * @var CostAddress|null
 	 */
-	private ?ShipmentAddress $from = null;
+	private ?CostAddress $from = null;
 
 	/**
-	 * @JMS\Type("JdeShipping\Dto\ShipmentAddress")
-	 * @var ShipmentAddress|null
+	 * @JMS\Type("JdeShipping\Dto\CostAddress")
+	 * @var CostAddress|null
 	 */
-	private ?ShipmentAddress $to = null;
+	private ?CostAddress $to = null;
 
 	/**
 	 * Get the value of from
 	 *
-	 * @return ShipmentAddress|null
+	 * @return CostAddress|null
 	 */
-	public function getFrom(): ?ShipmentAddress
+	public function getFrom(): ?CostAddress
 	{
 		return $this->from;
 	}
@@ -33,7 +33,7 @@ class ShipmentCalcAddress extends ShipmentCalc
 	/**
 	 * Set the value of from
 	 *
-	 * @param ShipmentAddress|null  $from  
+	 * @param CostAddress|null  $from  
 	 *
 	 * @return self
 	 */
@@ -47,9 +47,9 @@ class ShipmentCalcAddress extends ShipmentCalc
 	/**
 	 * Get the value of to
 	 *
-	 * @return ShipmentAddress|null
+	 * @return CostAddress|null
 	 */
-	public function getTo(): ?ShipmentAddress
+	public function getTo(): ?CostAddress
 	{
 		return $this->to;
 	}
@@ -57,7 +57,7 @@ class ShipmentCalcAddress extends ShipmentCalc
 	/**
 	 * Set the value of to
 	 *
-	 * @param ShipmentAddress|null  $to  
+	 * @param CostAddress|null  $to  
 	 *
 	 * @return self
 	 */
