@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JdeShipping\Request\Shipment;
+namespace JdeShipping\Request\Cost;
 
 use JdeShipping\Request\Request;
 use JMS\Serializer\Annotation as JMS;
 
-abstract class ShipmentCostCalcAbstract extends Request
+abstract class CostCalcAbstract extends Request
 {
 	/**
 	 * @var int|null

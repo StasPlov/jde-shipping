@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JdeShipping\Request\Shipment;
+namespace JdeShipping\Request\Cost;
 
 use JdeShipping\Dto\ShipmentCalc;
 
-final class ShipmentCostCalcRequest extends ShipmentCostCalcAbstract
+final class CostCalcRequest extends CostCalcAbstract
 {
 	const PRIVATE = true;
 	const METHOD = 'GET';

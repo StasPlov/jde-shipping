@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace JdeShipping\Tests;
 
 use JdeShipping\JdeShipping;
+use JdeShipping\Request\Cost\CostCalcByAddressRequest;
+use JdeShipping\Request\Cost\CostCalcRequest;
 use JdeShipping\Request\Geo\GeoCitySearchRequest;
 use JdeShipping\Request\Geo\GeoScheduleRequest;
 use JdeShipping\Request\Geo\GeoSearchByKladrRequest;
@@ -18,8 +20,6 @@ use JdeShipping\Request\Order\Type\OrderCreate\Pickup;
 use JdeShipping\Request\Order\Type\OrderCreate\Service;
 use JdeShipping\Request\Order\Type\OrderCreate\Store;
 use JdeShipping\Request\Service\ServiceDocCodeListRequest;
-use JdeShipping\Request\Shipment\ShipmentCostCalcByAddressRequest;
-use JdeShipping\Request\Shipment\ShipmentCostCalcRequest;
 use PHPUnit\Framework\TestCase;
 
 class JdeShippingTest extends TestCase
@@ -82,9 +82,9 @@ class JdeShippingTest extends TestCase
 		$this->assertIsObject($response[0]);
 	}
 
-	public function testShipmentCostCalcByAddress(): void
+	public function testCostCalcByAddress(): void
 	{
-		$shipmentCalc = (new ShipmentCostCalcByAddressRequest())
+		$shipmentCalc = (new CostCalcByAddressRequest())
 			->setAddrFrom('владивосток')
 			->setAddrTo('москва')
 			->setType(1)
@@ -100,16 +100,16 @@ class JdeShippingTest extends TestCase
 			->setOversizeVolume(1)
 			->setObrVolume(0.031);
 
-		$response = $this->jdeShipping->getShipmentCostCalcByAddress($shipmentCalc);
+		$response = $this->jdeShipping->getCostCalcByAddress($shipmentCalc);
 
 		$this->assertIsObject($response);
 		$this->assertNull($response->getError());
 		$this->assertIsFloat($response->getPrice());
 	}
 
-	public function testShipmentCostCalc(): void
+	public function testCostCalc(): void
 	{
-		$shipmentCalc = (new ShipmentCostCalcRequest())
+		$shipmentCalc = (new CostCalcRequest())
 			->setFrom('1010005858')
 			->setTo('1125904247254472')
 			->setType(1)
@@ -123,9 +123,9 @@ class JdeShippingTest extends TestCase
 		$this->assertIsFloat($response->getPrice());
 	}
 
-	public function testShipmentCostCalc_Service(): void
+	public function testCostCalc_Service(): void
 	{
-		$shipmentCalc = (new ShipmentCostCalcRequest())
+		$shipmentCalc = (new CostCalcRequest())
 			->setFrom('1010005858')
 			->setTo('1125904247254472')
 			->setType(1)
@@ -138,7 +138,7 @@ class JdeShippingTest extends TestCase
 
 		$this->assertIsArray($shipmentCalc->getServices());
 
-		$shipmentCalc = (new ShipmentCostCalcRequest())
+		$shipmentCalc = (new CostCalcRequest())
 			->setFrom('1010005858')
 			->setTo('1125904247254472')
 			->setType(1)
@@ -148,9 +148,9 @@ class JdeShippingTest extends TestCase
 		$this->assertNull($shipmentCalc->getServices());
 	}
 
-	public function testShipmentCostCalc_Smart(): void
+	public function testCostCalc_Smart(): void
 	{
-		$shipmentCalc = (new ShipmentCostCalcRequest())
+		$shipmentCalc = (new CostCalcRequest())
 			->setFrom('Москва')
 			->setTo('Владивосток')
 			->setType(1)
