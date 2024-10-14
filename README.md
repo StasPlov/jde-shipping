@@ -13,7 +13,7 @@ Features:
   - [x] Receiving new shipment statuses
   - [x] Shipment delivery status by waybill number
   - [ ] Simplified shipment delivery status by waybill number
-  - [ ] Setting a delivery restriction on a shipment
+  - [x] Setting a delivery restriction on a shipment
 - [ ] Services
   - [x] Receiving a list of service codes
   - [ ] Receiving information on shipment services
