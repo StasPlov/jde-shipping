@@ -10,7 +10,7 @@ Features:
   - [x] New delivery request
   - [x] List of requests
 - [ ] Shipments
-  - [ ] Receiving new shipment statuses
+  - [x] Receiving new shipment statuses
   - [ ] Shipment delivery status by waybill number
   - [ ] Simplified shipment delivery status by waybill number
   - [ ] Setting a delivery restriction on a shipment

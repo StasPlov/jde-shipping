@@ -20,6 +20,7 @@ use JdeShipping\Request\Order\Type\OrderCreate\Pickup;
 use JdeShipping\Request\Order\Type\OrderCreate\Service;
 use JdeShipping\Request\Order\Type\OrderCreate\Store;
 use JdeShipping\Request\Service\ServiceDocCodeListRequest;
+use JdeShipping\Request\Shipment\ShipmentNewStatusRequest;
 use PHPUnit\Framework\TestCase;
 
 class JdeShippingTest extends TestCase
@@ -174,7 +175,7 @@ class JdeShippingTest extends TestCase
 		$this->assertIsArray($response);
 	}
 
-	public function testOrderCreateRequest_simple(): void
+	public function testOrderCreate_simple(): void
 	{
 		$order = (new OrderCreateRequest())
 			->setFrom("1125899906842653")
@@ -204,10 +205,19 @@ class JdeShippingTest extends TestCase
 		$this->assertEquals("success", $response->getStatus());
 	}
 
-	public function testOrderListRequest(): void
+	public function testOrderList(): void
 	{
 		$response = $this->jdeShipping->getOrderList(
 			new OrderListRequest()
+		);
+
+		$this->assertIsArray($response);
+	}
+
+	public function testShipmentNewStatus(): void
+	{
+		$response = $this->jdeShipping->getShipmentNewStatus(
+			new ShipmentNewStatusRequest()
 		);
 
 		$this->assertIsArray($response);

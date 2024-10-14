@@ -21,6 +21,8 @@ use JdeShipping\Client\Client;
  * 
  * @method Dto\Order[] 				getOrderList(Request\Order\OrderListRequest $request);
  * @method Dto\OrderCreate			sendOrderCreate(Request\Order\OrderCreateRequest $request);
+ * 
+ * @method Dto\ShipmentStatus[]		getShipmentNewStatus(Request\Shipment\ShipmentNewStatusRequest $request);
  */
 final class JdeShipping extends Client
 {
