@@ -5,24 +5,26 @@ declare(strict_types=1);
 namespace JdeShipping;
 
 use JdeShipping\Client\Client;
+use JdeShipping\Request\Request;
 
 /** 
  * Тут отпеделяем динамические методы
  * 
- * @method Dto\Location[] 			getGeoSearch(Request\Geo\GeoSearchRequest $request);
- * @method Dto\LocationByKladr[] 	getGeoSearchByKladr(Request\Geo\GeoSearchByKladrRequest $request);
- * @method Dto\City[] 				getGeoCitySearch(Request\Geo\GeoCitySearchRequest $request);
- * @method Dto\Schedule[] 			getGeoSchedule(Request\Geo\GeoScheduleRequest $request);
+ * @method Dto\Location[] 				getGeoSearch(Request\Geo\GeoSearchRequest $request);
+ * @method Dto\LocationByKladr[] 		getGeoSearchByKladr(Request\Geo\GeoSearchByKladrRequest $request);
+ * @method Dto\City[] 					getGeoCitySearch(Request\Geo\GeoCitySearchRequest $request);
+ * @method Dto\Schedule[] 				getGeoSchedule(Request\Geo\GeoScheduleRequest $request);
  * 
- * @method Dto\CostCalcAddress 		getCostCalcByAddress(Request\Cost\CostCalcByAddressRequest $request);
- * @method Dto\CostCalc 			getCostCalc(Request\Cost\CostCalcRequest $request);
+ * @method Dto\CostCalcAddress 			getCostCalcByAddress(Request\Cost\CostCalcByAddressRequest $request);
+ * @method Dto\CostCalc 				getCostCalc(Request\Cost\CostCalcRequest $request);
  * 
- * @method Dto\DocumentCode[] 		getServiceList(Request\Service\ServiceDocCodeListRequest $request);
+ * @method Dto\DocumentCode[] 			getServiceList(Request\Service\ServiceDocCodeListRequest $request);
  * 
- * @method Dto\Order[] 				getOrderList(Request\Order\OrderListRequest $request);
- * @method Dto\OrderCreate			sendOrderCreate(Request\Order\OrderCreateRequest $request);
+ * @method Dto\Order[] 					getOrderList(Request\Order\OrderListRequest $request);
+ * @method Dto\OrderCreate				sendOrderCreate(Request\Order\OrderCreateRequest $request);
  * 
- * @method Dto\ShipmentStatus[]		getShipmentNewStatus(Request\Shipment\ShipmentNewStatusRequest $request);
+ * @method Dto\ShipmentStatus[]			getShipmentNewStatus(Request\Shipment\ShipmentNewStatusRequest $request);
+ * @method Dto\ShipmentSimpleStatus 	getShipmentStatusByCode(Request\Shipment\ShipmentStatusByCodeRequest $request);
  */
 final class JdeShipping extends Client
 {

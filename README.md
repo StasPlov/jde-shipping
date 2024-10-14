@@ -11,7 +11,7 @@ Features:
   - [x] List of requests
 - [ ] Shipments
   - [x] Receiving new shipment statuses
-  - [ ] Shipment delivery status by waybill number
+  - [x] Shipment delivery status by waybill number
   - [ ] Simplified shipment delivery status by waybill number
   - [ ] Setting a delivery restriction on a shipment
 - [ ] Services

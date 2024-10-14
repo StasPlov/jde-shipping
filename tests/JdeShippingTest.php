@@ -21,6 +21,7 @@ use JdeShipping\Request\Order\Type\OrderCreate\Service;
 use JdeShipping\Request\Order\Type\OrderCreate\Store;
 use JdeShipping\Request\Service\ServiceDocCodeListRequest;
 use JdeShipping\Request\Shipment\ShipmentNewStatusRequest;
+use JdeShipping\Request\Shipment\ShipmentStatusByCodeRequest;
 use PHPUnit\Framework\TestCase;
 
 class JdeShippingTest extends TestCase
@@ -182,6 +183,7 @@ class JdeShippingTest extends TestCase
 			->setTo("1125899906842629")
 			->setVolume(1)
 			->setWeight(1)
+			->setRef('1234-test')
 			->setPositions(2)
 			->setGruzdesc("Бытовая техника и электроника")
 			->setPayer(JdeShipping::PAYER_SENDER)
@@ -221,6 +223,16 @@ class JdeShippingTest extends TestCase
 		);
 
 		$this->assertIsArray($response);
+	}
+
+	public function testShipmentStatusByCode(): void
+	{
+		$response = $this->jdeShipping->getShipmentStatusByCode(
+			(new ShipmentStatusByCodeRequest())
+				->setRef('1234-test')
+		);
+
+		$this->assertIsObject($response);
 	}
 
 	/* public function testOrderCreateRequest(): void

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace JdeShipping\Request\Shipment;
 
-use JdeShipping\Dto\ShipmentStatus;
+use JdeShipping\Dto\ShipmentNewStatus;
 use JdeShipping\Request\Request;
 
 final class ShipmentNewStatusRequest extends Request
@@ -12,7 +12,7 @@ final class ShipmentNewStatusRequest extends Request
 	const PRIVATE = true;
 	const METHOD = 'GET';
 	const URL = 'cargos/StatusOnlyNew';
-	const DTO = ShipmentStatus::class;
+	const DTO = ShipmentNewStatus::class;
 
 	/**
 	 * @var int|null

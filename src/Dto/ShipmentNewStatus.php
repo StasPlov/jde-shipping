@@ -7,7 +7,7 @@ namespace JdeShipping\Dto;
 use DateTimeInterface;
 use JMS\Serializer\Annotation as JMS;
 
-class ShipmentStatus
+class ShipmentNewStatus
 {
 	/**
 	 * @JMS\Type("int")
