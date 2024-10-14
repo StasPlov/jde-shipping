@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace JdeShipping\Request\Shipment;
 
-use JdeShipping\Dto\ShipmentNewStatus;
+use JdeShipping\Dto\ShipmentRestriction;
 use JdeShipping\Request\Request;
 
-final class ShipmentNewStatusRequest extends Request
+final class ShipmentSetRestrictionRequest extends Request
 {
 	const PRIVATE = true;
 	const METHOD = 'GET';
 	const URL = 'cargos/SetZapretTTN';
-	const DTO = ShipmentNewStatus::class;
+	const DTO = ShipmentRestriction::class;
 
 	/**
 	 * @var int|null
