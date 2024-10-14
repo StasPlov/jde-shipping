@@ -25,6 +25,7 @@ use JdeShipping\Request\Request;
  * 
  * @method Dto\ShipmentStatus[]			getShipmentNewStatus(Request\Shipment\ShipmentNewStatusRequest $request);
  * @method Dto\ShipmentSimpleStatus 	getShipmentStatusByCode(Request\Shipment\ShipmentStatusByCodeRequest $request);
+ * @method Dto\ShipmentRestriction 	sendShipmentSetRestriction(Request\Shipment\ShipmentSetRestrictionRequest $request);
  */
 final class JdeShipping extends Client
 {
