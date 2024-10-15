@@ -25,12 +25,14 @@ use JdeShipping\Dto\CostCalcAddress;
 use JdeShipping\Dto\CostCalc;
 use JdeShipping\Dto\Document;
 use JdeShipping\Dto\DocumentCode;
+use JdeShipping\Dto\DocumentType;
 use JdeShipping\Dto\Order;
 use JdeShipping\Dto\OrderCreate;
 use JdeShipping\Dto\ShipmentNewStatus;
 use JdeShipping\Dto\ShipmentSimpleStatus;
 use JdeShipping\Dto\ShipmentRestriction;
 use JdeShipping\Request\Document\DocumentRequest;
+use JdeShipping\Request\Document\DocumentTypeListRequest;
 use JdeShipping\Trait\JdeShippingConstTrait;
 
 /**
@@ -196,6 +198,18 @@ final class JdeShipping extends Client
 	 * @throws ClientException В случае ошибки при выполнении запроса
 	 */
 	public function getDocument(DocumentRequest $request): Document
+	{
+		return $this->request($request);
+	}
+
+	/**
+	 * Получает список типов документов.
+	 *
+	 * @param DocumentTypeListRequest $request Запрос на получение списка типов документов
+	 * @return DocumentType[] Массив типов документов
+	 * @throws ClientException В случае ошибки при выполнении запроса
+	 */
+	public function getDocumentTypeList(DocumentTypeListRequest $request): array
 	{
 		return $this->request($request);
 	}

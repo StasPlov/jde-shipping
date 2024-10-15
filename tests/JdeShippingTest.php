@@ -12,6 +12,7 @@ use JdeShipping\JdeShipping;
 use JdeShipping\Request\Cost\CostCalcByAddressRequest;
 use JdeShipping\Request\Cost\CostCalcRequest;
 use JdeShipping\Request\Document\DocumentRequest;
+use JdeShipping\Request\Document\DocumentTypeListRequest;
 use JdeShipping\Request\Geo\GeoCitySearchRequest;
 use JdeShipping\Request\Geo\GeoScheduleRequest;
 use JdeShipping\Request\Geo\GeoSearchByKladrRequest;
@@ -236,7 +237,7 @@ class JdeShippingTest extends TestCase
 	/**
 	 * @depends testOrderCreate_simple
 	 */
-	public function testShipmentStatusByCode(string $randRef): void
+	public function testShipmentStatusByCode(string $randRef): ShipmentSimpleStatus
 	{
 		$response = $this->jdeShipping->getShipmentStatusByCode(
 			(new ShipmentStatusByCodeRequest())
@@ -246,6 +247,8 @@ class JdeShippingTest extends TestCase
 		$this->assertIsObject($response);
 		$this->assertInstanceOf(ShipmentSimpleStatus::class, $response);
 		$this->assertEquals(JdeShipping::ORDER_STATE_NEW_ORDER_BY_CLIENT, $response->getStatus());
+
+		return $response;
 	}
 
 	/**
@@ -276,11 +279,14 @@ class JdeShippingTest extends TestCase
 		}
 	}
 
-	public function testDocument(): void
+	/**
+	 * @depends testShipmentStatusByCode
+	 */
+	public function testDocument(ShipmentSimpleStatus $shipmentStatus): void
 	{
 		$request = (new DocumentRequest())
-			->setType(7479)
-			->setId("000000000000");
+			->setType(5833)
+			->setId((string) $shipmentStatus->getId());
 
 		try {
 			$response = $this->jdeShipping->getDocument($request);
@@ -294,5 +300,15 @@ class JdeShippingTest extends TestCase
 				$this->fail('Неожиданное исключение: ' . $e->getMessage());
 			}
 		}
+	}
+
+	public function testDocumentTypeList(): void
+	{
+		$response = $this->jdeShipping->getDocumentTypeList(
+			new DocumentTypeListRequest()
+		);
+
+		$this->assertIsArray($response);
+		$this->assertNotEmpty($response);
 	}
 }

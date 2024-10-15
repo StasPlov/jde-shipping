@@ -24,9 +24,9 @@ Features:
   - [x] Searching for cities by types
   - [x] Searching by terminal type
   - [x] Branch working hours
-- [ ] Documents
-  - [ ] Receiving documents
-  - [ ] Receiving a list of document codes
+- [x] Documents
+  - [x] Receiving documents
+  - [x] Receiving a list of document codes
 
 ## Installation
 
