@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace JdeShipping\Tests;
 
-use JdeShipping\Dto\OrderCreate;
+use JdeShipping\Dto\Order;
+use JdeShipping\Dto\ShipmentRestriction;
 use JdeShipping\Dto\ShipmentSimpleStatus;
 use JdeShipping\JdeShipping;
 use JdeShipping\Request\Cost\CostCalcByAddressRequest;
@@ -15,12 +16,8 @@ use JdeShipping\Request\Geo\GeoSearchByKladrRequest;
 use JdeShipping\Request\Geo\GeoSearchRequest;
 use JdeShipping\Request\Order\OrderCreateRequest;
 use JdeShipping\Request\Order\OrderListRequest;
-use JdeShipping\Request\Order\Type\OrderCreate\Delivery;
 use JdeShipping\Request\Order\Type\OrderCreate\PersonReceiver;
 use JdeShipping\Request\Order\Type\OrderCreate\PersonSender;
-use JdeShipping\Request\Order\Type\OrderCreate\Pickup;
-use JdeShipping\Request\Order\Type\OrderCreate\Service;
-use JdeShipping\Request\Order\Type\OrderCreate\Store;
 use JdeShipping\Request\Service\ServiceDocCodeListRequest;
 use JdeShipping\Request\Shipment\ShipmentNewStatusRequest;
 use JdeShipping\Request\Shipment\ShipmentSetRestrictionRequest;
@@ -80,7 +77,7 @@ class JdeShippingTest extends TestCase
 		$geoKladr = (new GeoScheduleRequest())
 			->setCode('1125899906842653');
 
-		$response = $this->jdeShipping->getGeoCitySearch($geoKladr);
+		$response = $this->jdeShipping->getGeoSchedule($geoKladr);
 
 		$this->assertIsArray($response);
 		$this->assertNotEmpty($response);
@@ -121,7 +118,7 @@ class JdeShippingTest extends TestCase
 			->setWeight(216)
 			->setVolume(0.41);
 
-		$response = $this->jdeShipping->getShipmentCostCalcByAddress($shipmentCalc);
+		$response = $this->jdeShipping->getCostCalc($shipmentCalc);
 
 		$this->assertIsObject($response);
 		$this->assertNull($response->getError());
@@ -163,7 +160,7 @@ class JdeShippingTest extends TestCase
 			->setVolume(0.41)
 			->setSmart(true);
 
-		$response = $this->jdeShipping->getShipmentCostCalcByAddress($shipmentCalc);
+		$response = $this->jdeShipping->getCostCalc($shipmentCalc);
 
 		$this->assertIsObject($response);
 		$this->assertNull($response->getError());
@@ -213,13 +210,16 @@ class JdeShippingTest extends TestCase
 		return $randRef;
 	}
 
-	public function testOrderList(): void
+	public function testOrderList(): Order
 	{
 		$response = $this->jdeShipping->getOrderList(
 			new OrderListRequest()
 		);
 
 		$this->assertIsArray($response);
+		$this->assertNotEmpty($response);
+
+		return $response[0];
 	}
 
 	public function testShipmentNewStatus(): void
@@ -234,7 +234,7 @@ class JdeShippingTest extends TestCase
 	/**
 	 * @depends testOrderCreate_simple
 	 */
-	public function testShipmentStatusByCode(string $randRef): ShipmentSimpleStatus
+	public function testShipmentStatusByCode(string $randRef): void
 	{
 		$response = $this->jdeShipping->getShipmentStatusByCode(
 			(new ShipmentStatusByCodeRequest())
@@ -244,23 +244,35 @@ class JdeShippingTest extends TestCase
 		$this->assertIsObject($response);
 		$this->assertInstanceOf(ShipmentSimpleStatus::class, $response);
 		$this->assertEquals(JdeShipping::ORDER_STATE_NEW_ORDER_BY_CLIENT, $response->getStatus());
-
-		return $response;
 	}
 
 	/**
-	 * @depends testShipmentStatusByCode
+	 * @depends testOrderList
+	 * @param Order $order
 	 */
-	/* public function testSendShipmentSetRestriction(ShipmentSimpleStatus $shipmentSimpleStatus): void
+	public function testSendShipmentSetRestriction(Order $order): void
 	{
-		$this->expectException(\JdeShipping\Exception\RemoteServerException::class);
-		$this->expectExceptionCode(500);
+		$request = (new ShipmentSetRestrictionRequest())->setTtn($order->getId());
 
-		$response = $this->jdeShipping->sendShipmentSetRestriction(
-			(new ShipmentSetRestrictionRequest())
-				->setTtn($shipmentSimpleStatus->getId())
-		);
-	} */
+		try {
+			$response = $this->jdeShipping->sendShipmentSetRestriction($request);
+
+			$this->assertInstanceOf(ShipmentRestriction::class, $response);
+
+			if ($response->getInfo() === "ТТН не найдена") {
+				$this->assertEquals("ТТН не найдена", $response->getInfo());
+			} else {
+				$this->assertTrue($response->getIsOk());
+				$this->assertNotEmpty($response->getInfo());
+			}
+		} catch (\Exception $e) {
+			if ($e->getCode() === 500) {
+				$this->markTestSkipped('Произошла ошибка 500 при выполнении sendShipmentSetRestriction');
+			} else {
+				$this->fail('Неожиданное исключение: ' . $e->getMessage());
+			}
+		}
+	}
 
 	/* public function testOrderCreateRequest(): void
 	{

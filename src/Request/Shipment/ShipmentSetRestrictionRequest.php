@@ -22,9 +22,9 @@ final class ShipmentSetRestrictionRequest extends Request
 	/**
 	 * Get номер ТТН
 	 *
-	 * @return string|null
+	 * @return int|null
 	 */
-	public function getTtn(): ?string
+	public function getTtn(): ?int
 	{
 		return $this->ttn;
 	}
@@ -32,11 +32,11 @@ final class ShipmentSetRestrictionRequest extends Request
 	/**
 	 * Set номер ТТН
 	 *
-	 * @param string|null  $ttn  Номер ТТН
+	 * @param int|null $ttn Номер ТТН
 	 *
 	 * @return static
 	 */
-	public function setTtn($ttn): self
+	public function setTtn(int $ttn): self
 	{
 		$this->ttn = $ttn;
 
