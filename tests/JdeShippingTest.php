@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JdeShipping\Tests;
 
+use JdeShipping\Dto\OrderCreate;
+use JdeShipping\Dto\ShipmentSimpleStatus;
 use JdeShipping\JdeShipping;
 use JdeShipping\Request\Cost\CostCalcByAddressRequest;
 use JdeShipping\Request\Cost\CostCalcRequest;
@@ -21,6 +23,7 @@ use JdeShipping\Request\Order\Type\OrderCreate\Service;
 use JdeShipping\Request\Order\Type\OrderCreate\Store;
 use JdeShipping\Request\Service\ServiceDocCodeListRequest;
 use JdeShipping\Request\Shipment\ShipmentNewStatusRequest;
+use JdeShipping\Request\Shipment\ShipmentSetRestrictionRequest;
 use JdeShipping\Request\Shipment\ShipmentStatusByCodeRequest;
 use PHPUnit\Framework\TestCase;
 
@@ -176,14 +179,15 @@ class JdeShippingTest extends TestCase
 		$this->assertIsArray($response);
 	}
 
-	public function testOrderCreate_simple(): void
+	public function testOrderCreate_simple(): string
 	{
+		$randRef = 'test-' . rand(1000, 9999) . '-' . rand(1000, 9999);
 		$order = (new OrderCreateRequest())
 			->setFrom("1125899906842653")
 			->setTo("1125899906842629")
 			->setVolume(1)
 			->setWeight(1)
-			->setRef('1234-test')
+			->setRef($randRef)
 			->setPositions(2)
 			->setGruzdesc("Бытовая техника и электроника")
 			->setPayer(JdeShipping::PAYER_SENDER)
@@ -205,6 +209,8 @@ class JdeShippingTest extends TestCase
 
 		$this->assertIsObject($response);
 		$this->assertEquals("success", $response->getStatus());
+
+		return $randRef;
 	}
 
 	public function testOrderList(): void
@@ -225,15 +231,36 @@ class JdeShippingTest extends TestCase
 		$this->assertIsArray($response);
 	}
 
-	public function testShipmentStatusByCode(): void
+	/**
+	 * @depends testOrderCreate_simple
+	 */
+	public function testShipmentStatusByCode(string $randRef): ShipmentSimpleStatus
 	{
 		$response = $this->jdeShipping->getShipmentStatusByCode(
 			(new ShipmentStatusByCodeRequest())
-				->setRef('1234-test')
+				->setRef($randRef)
 		);
 
 		$this->assertIsObject($response);
+		$this->assertInstanceOf(ShipmentSimpleStatus::class, $response);
+		$this->assertEquals(JdeShipping::ORDER_STATE_NEW_ORDER_BY_CLIENT, $response->getStatus());
+
+		return $response;
 	}
+
+	/**
+	 * @depends testShipmentStatusByCode
+	 */
+	/* public function testSendShipmentSetRestriction(ShipmentSimpleStatus $shipmentSimpleStatus): void
+	{
+		$this->expectException(\JdeShipping\Exception\RemoteServerException::class);
+		$this->expectExceptionCode(500);
+
+		$response = $this->jdeShipping->sendShipmentSetRestriction(
+			(new ShipmentSetRestrictionRequest())
+				->setTtn($shipmentSimpleStatus->getId())
+		);
+	} */
 
 	/* public function testOrderCreateRequest(): void
 	{
