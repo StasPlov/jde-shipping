@@ -24,11 +24,11 @@
 		"issues": "https://github.com/StasPlov/jde-shipping/issues"
 	},
 	"require": {
-		"php": "^7.4 || ^8.2",
+		"php": ">=7.4",
 		"ext-json": "*",
 		"doctrine/annotations": "^2.0",
 		"jms/serializer": "^3.30",
-		"symfony/http-client": "^7.1"
+		"symfony/http-client": "^5.4"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^11.3",
