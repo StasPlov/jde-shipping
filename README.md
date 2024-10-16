@@ -1,4 +1,9 @@
 # jde shipping API integration SDK
+[![Latest Stable Version](http://poser.pugx.org/stas-plov/jde-shipping/v)](https://packagist.org/packages/stas-plov/jde-shipping)
+[![Total Downloads](http://poser.pugx.org/stas-plov/jde-shipping/downloads)](https://packagist.org/packages/stas-plov/jde-shipping)
+[![Latest Unstable Version](http://poser.pugx.org/stas-plov/jde-shipping/v/unstable)](https://packagist.org/packages/stas-plov/jde-shipping)
+[![License](http://poser.pugx.org/stas-plov/jde-shipping/license)](https://packagist.org/packages/stas-plov/jde-shipping)
+[![PHP Version Require](http://poser.pugx.org/stas-plov/jde-shipping/require/php)](https://packagist.org/packages/stas-plov/jde-shipping)
 
 Features:
 
